@@ -1,0 +1,5 @@
+selenium                      4.11.2
+selenium-injector             2.3
+selenium-interceptor          1.0.2
+selenium-profiles             2.2.10
+selenium-wire                 5.1.0
