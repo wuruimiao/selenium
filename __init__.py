@@ -31,4 +31,15 @@ driver = Chrome(
     # 增加options
     **kwargs,
 )
-driver.get("https://www.baidu.com")
+
+from seleniumwire.webdriver import Chrome
+
+# 自己起了个代理
+driver1 = Chrome(
+
+    seleniumwire_options={},
+    # 前者优先，是selenium.webdriver.ChromeOptions
+    chrome_options={}, options={}
+
+)
+
