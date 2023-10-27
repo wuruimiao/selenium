@@ -32,14 +32,31 @@ driver = Chrome(
     **kwargs,
 )
 
-from seleniumwire.webdriver import Chrome
+from seleniumwire.webdriver import Chrome, ChromeOptions
 
-# 自己起了个代理
+# 自己起了个代理，DriverCommonMixin
 driver1 = Chrome(
-
+    # auto_config=True时，seleniumwire_options里的选项会合并到chrome_options里
+    # 代理地址: addr, port
+    # 代理里用：ca_cert, ca_key, verify_ssl, suppress_connection_errors, disable_capture
     seleniumwire_options={},
     # 前者优先，是selenium.webdriver.ChromeOptions
     chrome_options={}, options={}
+)
+
+# selenium.webdriver.chromium.webdriver.ChromiumDriver
+# webdriver的位置，在options里指定，但会通过运行selenium-manager，得到的输出里再解析一遍，得到driver_path，以及browser_path
+# 通过service起一个子进程webdriver，--port必有，可选--append-log，--readable-timestamp，--log-path
+# port通过临时起个监听，看看哪个行就用哪个
+# ChromiumDriver继承自selenium.webdriver.remote.webdriver.WebDriver
+# 通过port，以及remote类的方法，向webdriver发送命令
+
+from seleniumwire.undetected_chromedriver.v2 import Chrome
+driver2 = Chrome(
 
 )
 
+driver2.get()
+
+# https://chromedriver.storage.googleapis.com/LATEST_RELEASE
+# 114.0.5735.90
